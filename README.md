@@ -7,6 +7,10 @@ Este repositorio contiene una serie de projectos de vision artificial desarrolla
 ```bash
 pip install opencv-python mediapipe numpy matplotlib
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> eca45 (segundo commit)
 cada proyecto explica como usarse
 
 Sígueme en Instagram como @samuel_nelo.py ahí estaré subiendo cada proyecto nuevo que haga.
