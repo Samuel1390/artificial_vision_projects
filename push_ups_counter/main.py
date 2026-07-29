@@ -7,7 +7,6 @@ from pathlib import Path
 import mediapipe as mp
 from mediapipe.tasks import python
 import cv2
-from push_ups_counter import count_push_up
 
 def get_joint_angle(p1, p2, p3):
     """
@@ -47,9 +46,6 @@ options = vision.PoseLandmarkerOptions(
     output_segmentation_masks=True)
 
 detector = vision.PoseLandmarker.create_from_options(options)
-
-
-
 
 
 class PushUpCounter:
@@ -126,7 +122,7 @@ class PushUpCounter:
                 right_angle = get_joint_angle(right_shoulder, right_elbow, right_wrist)
 
             # Lógica de estados estricta (ambos brazos deben cumplir el criterio)
-            if left_angle > 160 and right_angle > 160:
+            if left_angle > 150 and right_angle > 150:
                 stage = "up"
                 
             if left_angle < 130 and right_angle < 130 and stage == "up":
@@ -156,8 +152,14 @@ class PushUpCounter:
 
 
 if __name__ == "__main__":
-    counter = PushUpCounter()
-    counter.process_video(live=True)
+  desktop = Path.home() / "Desktop"
+  # para que el modelo pueda reconocer bien el video es importante que te grabes de frente haciendo las flexiones y tambien no encorvarse demaciado ya que el modelo puede confundirse y no reconocer bien las poses
+  # manten la espalda recta y cuello recto
+  counter = PushUpCounter()
+  # asi procesas el video en tiempo real (necesitas una webcam un celular o alguna camara conectada a tu pc)
+  counter.process_video(live=True)
+  # si tienes un video pregrabado puedes procesarlo asi:
+  # counter.process_video(live=False, video_path=desktop / "push_ups.mp4", output_path=desktop / "output_pushups.mp4")
 
 
 
