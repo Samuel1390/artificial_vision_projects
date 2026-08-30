@@ -151,13 +151,16 @@ class PushUpCounter:
         return push_ups_counter
 
 if __name__ == "__main__":
-  # para que el modelo pueda reconocer bien el video es importante que te grabes de frente haciendo las flexiones y tambien no encorvarse demaciado ya que el modelo puede confundirse y no reconocer bien las poses
+  # para que el modelo pueda reconocer bien el video es importante que te grabes de frente haciendo las flexiones y tambien no encorvarse demasiado ya que el modelo puede confundirse y no reconocer bien las poses
   # manten la espalda recta y cuello recto
   counter = PushUpCounter()
   # asi procesas el video en tiempo real (necesitas una webcam un celular o alguna camara conectada a tu pc)
-  counter.process_video(live=True)
+#   counter.process_video(live=True)
   # si tienes un video pregrabado puedes procesarlo asi:
-  # counter.process_video(live=False, video_path="push_ups.mp4", output_path="output_pushups.mp4")
+  desktop_dir = Path.home() / "Desktop" 
+  video_path = desktop_dir / 'raw-hernan-clip1.mp4'
+  output_dir = desktop_dir / 'hernan-clip1_output.mp4'
+  counter.process_video(live=False, video_path=str(video_path), output_path=str(output_dir))
 
 
 
